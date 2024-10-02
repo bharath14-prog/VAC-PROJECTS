@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import crudrouter from "./router/crudrouter/index.js"
+import crudrouter from "./router/crudroutes/index.js"
 const app = express();
 dotenv.config();
 app.use(bodyParser.json());
