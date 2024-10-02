@@ -1,37 +1,24 @@
+
 import { Router } from "express";
-import Customer from "../../models/book.js";
+import Customer from "../../models/auth.js";
 const router = Router()
-router.put("/pub/:id",async(req,res)=>{
+router.post("/post",async(req,res)=>{
   try{
-    const pub1 = await Customer.findByIdAndUpdate(req.params.id,req.body,{
-      new:true,
-      runValidators:true,
-    });
-    if(!pub1) return res.status(404).send({
-      message:"publisher not found...."
-    });
-    res.status(200).send(pub1);
-    res.send()
+    const customer = Customer(req.body)
+    await customer.save()
+    res.send("customer created succeessfully....");
   }
   catch(error){
-    res.status(400).send({
-      message:"error updating publisher...",error
-    })
+    res.send(error);
   }
-})
-router.delete("/pub/:id",async(req,res)=>{
+});
+router.get("/get",async(req,res)=>{
   try{
-    const pub1 = await Customer.findByIdAndDelete(req.params.id);
-    if(!pub1) return res.status(404).send({
-      message:"publisher not found...."
-    });
-    res.status(200).send(pub1);
-    res.send()
+    const customers = await Customer.find();
+    res.send(customers);
   }
   catch(error){
-    res.status(400).send({
-      message:"error updating publisher...",error
-    })
+    res.send(error);
   }
-})
+});
 export default router;
