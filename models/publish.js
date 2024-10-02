@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const Publisherschema = new mongoose.Schema({
+const Authorschema = new mongoose.Schema({
   name:{
     type:String,
     required:true,
@@ -13,5 +13,5 @@ const Publisherschema = new mongoose.Schema({
     required:false
   }
 })
-const Customer = mongoose.model("customers",Publisherschema);
+const Customer = mongoose.model("Author",Authorschema);
 export default Customer
